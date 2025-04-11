@@ -1,94 +1,285 @@
-.cyber-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+// _about.scss
+@use 'sass:math';
+
+// Variables (ensure these are defined in your variables file)
+$cyber-blue: #00f3ff;
+$neon-pink: #ff00ff;
+$matrix-green: #00ff00;
+$hologram-purple: #8a2be2;
+$cyber-black: #000000;
+
+// Animations
+@keyframes cardGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes glitchAnim {
+  0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
+  20% { clip-path: polygon(0 15%, 100% 15%, 100% 15%, 0 15%); }
+  30% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+  40% { clip-path: polygon(0 1%, 100% 1%, 100% 2%, 0 2%); }
+  50% { clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
+  55% { clip-path: polygon(0 44%, 100% 44%, 100% 44%, 0 44%); }
+  60% { clip-path: polygon(0 50%, 100% 50%, 100% 20%, 0 20%); }
+  100% { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); }
+}
+
+@keyframes borderPulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+@keyframes nodePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+// Horizontal About Section
+.horizontal-about {
+  display: flex;
+  gap: 4rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  perspective: 2000px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
   }
-  
-  .about-card {
-    position: relative;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
-    .card-glitch {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, 
-        rgba(0, 243, 255, 0.1) 0%,
-        rgba(255, 0, 255, 0.1) 100%
-      );
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-  
-    &:hover {
-      transform: translateY(-10px) rotateZ(1deg);
-      
-      .card-glitch {
-        opacity: 1;
-        animation: glitchScan 2s infinite;
-      }
-    }
-  }
-  
-  .cyber-heading {
-    font-size: 2.5rem;
-    color: $cyber-blue;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 15px rgba($cyber-blue, 0.4);
-  }
-  
-  .hologram-line {
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      $cyber-blue 50%, 
-      transparent 100%
-    );
-    margin: 1.5rem 0;
-  }
-  
-  .achievement-badge {
-    position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 2rem;
     padding: 1rem;
-    border: 2px solid $neon-pink;
-    margin-top: 2rem;
+  }
+}
+
+// About Cards
+.about-card {
+  flex: 1;
+  min-width: 600px;
+  padding: 2.5rem;
+  border-radius: 15px;
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  background: rgba($cyber-black, 0.7);
+  border: 2px solid $cyber-blue;
+  position: relative;
+  backdrop-filter: blur(12px);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 15px;
+    background: linear-gradient(45deg, $cyber-blue, $neon-pink, transparent 70%);
+    z-index: -1;
+    animation: cardGlow 3s infinite;
+  }
+
+  &:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 25px 40px rgba($cyber-blue, 0.15);
     
-    .counter {
-      font-size: 2.5rem;
-      color: $matrix-green;
-      display: block;
+    .holographic-overlay {
+      opacity: 1;
     }
+    
+    .card-glitch {
+      animation: glitchAnim 2s infinite;
+    }
+    
+    .timeline-node {
+      animation: nodePulse 1.5s infinite;
+    }
+  }
+
+  @media (max-width: 768px) {
+    min-width: auto;
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+// Card Content
+.card-content {
+  position: relative;
+  z-index: 2;
+
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Glitch Heading
+.heading-glitch {
+  position: relative;
+  display: inline-block;
+  font-size: 2.5rem;
+  color: $cyber-blue;
+  text-shadow: 0 0 15px rgba($cyber-blue, 0.4);
+  
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+  }
+  
+  &::before {
+    color: $neon-pink;
+    animation: glitchAnim 2s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  
+  &::after {
+    color: $matrix-green;
+    animation: glitchAnim 2s 0.2s infinite linear alternate-reverse;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+}
+
+// Hologram Line
+.hologram-line {
+  width: 100%;
+  height: 2px;
+  margin: 2rem 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    $cyber-blue 50%, 
+    transparent 100%
+  );
+  box-shadow: 0 0 10px $cyber-blue;
+}
+
+// Cyber List
+.cyber-list {
+  list-style: none;
+  margin: 2rem 0;
+  
+  li {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid $neon-pink;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    
+    &:hover {
+      transform: translateX(10px);
+      background: rgba($cyber-blue, 0.1);
+    }
+    
+    .list-icon {
+      margin-right: 1rem;
+      font-size: 1.2rem;
+      filter: drop-shadow(0 0 5px $cyber-blue);
+    }
+  }
+}
+
+// Achievement Badge
+.achievement-badge {
+  position: relative;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border: 2px solid $neon-pink;
+  background: rgba($cyber-black, 0.5);
+  text-align: center;
+  
+  .counter-wrapper {
+    position: relative;
+    display: inline-block;
     
     &::after {
       content: '';
       position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
+      inset: -5px;
       border: 2px solid $cyber-blue;
-      pointer-events: none;
-      animation: borderPulse 2s infinite;
+      animation: borderPulse 1.5s infinite;
     }
   }
   
-  @keyframes glitchScan {
-    0% { clip-path: inset(20% 0 60% 0); }
-    50% { clip-path: inset(40% 0 20% 0); }
-    100% { clip-path: inset(10% 0 50% 0); }
+  .counter {
+    font-size: 3rem;
+    color: $matrix-green;
+    text-shadow: 0 0 15px $matrix-green;
+    font-family: 'Orbitron', sans-serif;
   }
   
-  @keyframes borderPulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.3; }
-    100% { opacity: 1; }
+  .badge-text {
+    display: block;
+    color: $cyber-blue;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
   }
+}
+
+// Holographic Overlay
+.holographic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at var(--x) var(--y), 
+    rgba($cyber-blue, 0.1) 0%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+// Timeline Nodes
+.holographic-timeline {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  
+  .timeline-node {
+    width: 15px;
+    height: 15px;
+    background: $matrix-green;
+    border: 2px solid $cyber-blue;
+    border-radius: 50%;
+    box-shadow: 0 0 15px $matrix-green;
+    
+    &.pulse {
+      animation: nodePulse 2s infinite;
+      
+      &:nth-child(2) { animation-delay: 0.3s; }
+      &:nth-child(3) { animation-delay: 0.6s; }
+    }
+  }
+}
+
+// Mobile Responsive
+@media (max-width: 480px) {
+  .heading-glitch {
+    font-size: 2rem;
+  }
+  
+  .cyber-list li {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .achievement-badge {
+    padding: 1rem;
+    
+    .counter {
+      font-size: 2rem;
+    }
+  }
+}

@@ -1,0 +1,146 @@
+// _prizes.scss
+.prize-carousel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    perspective: 2000px;
+    padding: 4rem 0;
+  
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+  }
+  
+  .prize-tier {
+    position: relative;
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(0,0,0,0.9);
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    border: 2px solid;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 15px;
+      z-index: -1;
+      background: linear-gradient(45deg, 
+        var(--prize-color), 
+        rgba(var(--prize-color), 0.5), 
+        transparent 70%);
+      animation: tierGlow 3s infinite;
+    }
+  
+    &:hover {
+      transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 25px 40px rgba(0,243,255,0.15);
+      
+      .tier-glow {
+        opacity: 1;
+      }
+    }
+  }
+  
+  .tier-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 10px var(--prize-color));
+    animation: iconFloat 3s ease-in-out infinite;
+  }
+  
+  .prize-content {
+    position: relative;
+    z-index: 2;
+    
+    h3 {
+      color: var(--prize-color);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      text-shadow: 0 0 15px var(--prize-color);
+    }
+  }
+  
+  .prize-benefits {
+    list-style: none;
+    
+    li {
+      position: relative;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid var(--prize-color);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateX(10px);
+        background: rgba(var(--prize-color), 0.1);
+      }
+      
+      &::before {
+        content: '▸';
+        color: var(--prize-color);
+        margin-right: 0.8rem;
+      }
+    }
+  }
+  
+  .tier-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--x) var(--y), 
+      rgba(var(--prize-color), 0.1) 0%, 
+      transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  // Tier Colors
+  .grand-prize {
+    --prize-color: 255, 215, 0; /* Gold */
+    border-color: rgba(var(--prize-color), 0.5);
+  }
+  
+  .silver-prize {
+    --prize-color: 192, 192, 192; /* Silver */
+    border-color: rgba(var(--prize-color), 0.5);
+  }
+  
+  .bronze-prize {
+    --prize-color: 205, 127, 50; /* Bronze */
+    border-color: rgba(var(--prize-color), 0.5);
+  }
+  
+  .participant-prize {
+    --prize-color: 123, 104, 238; /* MediumSlateBlue */
+    border-color: rgba(var(--prize-color), 0.5);
+  }
+  
+  // Animations
+  @keyframes tierGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+  
+  @keyframes iconFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+  }
+  
+  @media (max-width: 768px) {
+    .prize-carousel {
+      grid-template-columns: 1fr;
+      padding: 2rem 0;
+      
+      .prize-tier {
+        margin-bottom: 2rem;
+      }
+    }
+  }

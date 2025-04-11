@@ -17,21 +17,24 @@
 
   <!-- Navbar -->
   <nav class="cyberpunk-nav">
-    <div class="logo">DEVCATION`25</div>
+    <a href="#home" class="nav-logo">
+        <img src="assets/images/logo.png" alt="Devcation 2025 Logo">
+      </a>
     <div class="nav-links">
       <a href="#about" class="holographic-link">About</a>
       <a href="#tracks" class="holographic-link">Tracks</a>
       <a href="#timeline" class="holographic-link">Timeline</a>
       <a href="#prizes" class="holographic-link">Prizes</a>
       <a href="#faq" class="holographic-link">FAQ</a>
+      <a href="#more" class="holographic-link">More</a>
     </div>
     <button class="hologram-button">Register Now</button>
   </nav>
-
+  <canvas class="webgl"></canvas>
+  <div class="matrix-rain-overlay"></div>
    <!-- Hero -->
   <section id="hero" class="fullscreen-section">
-    <canvas class="webgl"></canvas>
-    <div class="matrix-rain-overlay"></div>
+    
 
     <div class="hero-content">
       <h1 class="cyber-glitch mega-title" data-text="DEVCATION`25">DEVCATION`25</h1>
@@ -44,17 +47,17 @@
       <!-- Stats Section -->
       <div class="cyber-stats-horizontal">
         <div class="stat-item">
-          <div class="stat-value" data-count="500">500.0+</div>
+          <div class="stat-value" data-count="500">0</div>
           <div class="stat-label">Hackers</div>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <div class="stat-value" data-count="25">25.0+</div>
+          <div class="stat-value" data-count="25">0</div>
           <div class="stat-label">Mentors</div>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <div class="stat-value" data-count="4.6">4.6</div>
+          <div class="stat-value" data-count="4.6">0</div>
           <div class="stat-label">Rating</div>
         </div>
       </div>
@@ -82,37 +85,63 @@
 
   <!-- About Section -->
   <section id="about" class="fullscreen-section">
-    <div class="cyber-grid">
+    <canvas class="webgl"></canvas>
+    <div class="matrix-rain-overlay"></div>
+  
+    <div class="horizontal-about">
       <!-- GDG Card -->
-      <div class="cyber-card about-card">
+      <div class="about-card">
         <div class="card-glitch"></div>
-        <h2 class="cyber-heading">About GDG IGDTUW</h2>
-        <div class="hologram-line"></div>
-        <p class="cyber-text">
-          We explore technology to build products that create positive social change through mentorship, hackathons, and open-source programs.
-        </p>
-        <div class="achievement-badge">
-          <span class="counter" data-count="7000">0</span>+
-          <span class="badge-text">Students Empowered</span>
+        <div class="holographic-overlay"></div>
+        <div class="card-content">
+          <h2 class="cyber-heading">
+            <span class="heading-glitch" data-text="GDG_IGDTUW">GDG IGDTUW</span>
+          </h2>
+          <div class="hologram-line"></div>
+          <p class="cyber-text">
+            We pioneer technological solutions for social impact through:
+          </p>
+          <ul class="cyber-list">
+            <li><span class="list-icon">💡</span>Mentorship Programs</li>
+            <li><span class="list-icon">👩💻</span>Hackathons</li>
+            <li><span class="list-icon">🔄</span>Open-Source Initiatives</li>
+          </ul>
+          <div class="achievement-badge">
+            <div class="counter-wrapper">
+              <span class="counter" data-count="7000">0</span>+
+            </div>
+            <span class="badge-text">Students Empowered</span>
+          </div>
         </div>
       </div>
-
+  
       <!-- Devcation Card -->
-      <div class="cyber-card about-card">
+      <div class="about-card">
         <div class="card-glitch"></div>
-        <h2 class="cyber-heading">About Devcation`25</h2>
-        <div class="hologram-line"></div>
-        <p class="cyber-text">
-          A week-long tech festival featuring hackathons and workshops to spark creativity and innovative thinking in TechForGood domains.
-        </p>
-        <div class="holographic-timeline">
-          <div class="timeline-node"></div>
-          <div class="timeline-node"></div>
-          <div class="timeline-node"></div>
+        <div class="holographic-overlay"></div>
+        <div class="card-content">
+          <h2 class="cyber-heading">
+            <span class="heading-glitch" data-text="DEVCATION`25">DEVCATION'25</span>
+          </h2>
+          <div class="hologram-line"></div>
+          <p class="cyber-text">
+            A 7-day tech extravaganza featuring:
+          </p>
+          <ul class="cyber-list">
+            <li><span class="list-icon">⚡</span>Innovation Workshops</li>
+            <li><span class="list-icon">🤖</span>TechForGood Hackathons</li>
+            <li><span class="list-icon">🌐</span>Global Collaboration</li>
+          </ul>
+          <div class="holographic-timeline">
+            <div class="timeline-node pulse"></div>
+            <div class="timeline-node pulse"></div>
+            <div class="timeline-node pulse"></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  
 
   <!-- Tracks Section -->
   <section id="tracks" class="fullscreen-section">
@@ -126,47 +155,316 @@
         </div>
 
         <div class="track-card" data-track="edtech-fintech">
-          <div class="track-icon">📚💸</div>
-          <h3>EdTech & FinTech</h3>
+          <div class="track-icon">📚</div>
+          <h3>EdTech</h3>
           <div class="track-gradient"></div>
         </div>
 
         <div class="track-card" data-track="sustainable-dev">
-          <div class="track-icon">🌱</div>
-          <h3>Sustainable Development</h3>
+          <div class="track-icon">💸</div>
+          <h3>FinTech</h3>
           <div class="track-gradient"></div>
         </div>
 
         <div class="track-card" data-track="open-innovation">
-          <div class="track-icon">💡</div>
-          <h3>Open Innovation</h3>
+          <div class="track-icon">☘️</div>
+          <h3>Sustainable Development</h3>
           <div class="track-gradient"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Timeline Section -->
+  <!-- Timeline -->
   <section id="timeline" class="fullscreen-section">
-    <h2 class="section-title">Timeline</h2>
-    <p class="subtitle">Coming Soon...</p>
+    <div class="cyber-container">
+      <h2 class="section-title glitch-text" data-text="TIMELINE">TIMELINE</h2>
+      
+      <div class="vertical-timeline">
+        <!-- Timeline Items -->
+        <div class="timeline-item">
+          <div class="timeline-date">April 4th, 2025</div>
+          <div class="timeline-node">
+            <div class="node-icon">👾</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Opening Ceremony & Registration</h3>
+            <p>Submission for all Mini Events and the Registration for the Hackathon Starts</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">April 8th, 2025</div>
+          <div class="timeline-node">
+            <div class="node-icon">👾</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Hacking Period Starts!</h3>
+            <p>Get ready to code, create, and innovate!</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">April 12th, 2025</div>
+          <div class="timeline-node">
+            <div class="node-icon">👾</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Hacking Period Ends</h3>
+            <p>Make sure to wrap up your projects and prepare for submission.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">April 13th, 2025</div>
+          <div class="timeline-node">
+            <div class="node-icon">👾</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Mentorship Round Starts</h3>
+            <p>Providing mentorship and feedback for every submitted project.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-date">April 15th, 2025</div>
+          <div class="timeline-node">
+            <div class="node-icon">👾</div>
+          </div>
+          <div class="timeline-content">
+            <h3>Final Pitching & Closing Ceremony</h3>
+            <p>Don't miss out on this memorable event!</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Prizes Section -->
   <section id="prizes" class="fullscreen-section">
-    <h2 class="section-title">Prizes</h2>
-    <p class="subtitle">Exciting prizes await top teams!</p>
+    <div class="cyber-container">
+      <h2 class="section-title glitch-text" data-text="GLORY_REWARDS">PRIZES</h2>
+      
+      <div class="prize-carousel">
+        <!-- Hack & Solve Winners -->
+        <div class="prize-tier grand-prize">
+          <div class="prize-halo"></div>
+          <div class="prize-content">
+            <div class="tier-icon">🚀🏆</div>
+            <h3>Hack & Solve Champions</h3>
+            <ul class="prize-benefits">
+              <li><span class="cyber-text">Cash Prize + Swag Kit</span></li>
+              <li>Golden Medals &amp; Certificates</li>
+              <li>VIP Social Media Spotlight</li>
+              <li>Mock Interview Sessions</li>
+              <li>Codecrafter Elite Membership</li>
+              <li>Unstop Platinum Coupons</li>
+            </ul>
+          </div>
+          <div class="tier-glow"></div>
+        </div>
+  
+        <!-- Mini Event Winners -->
+        <div class="prize-tier silver-prize">
+          <div class="prize-content">
+            <div class="tier-icon">🎯🎁</div>
+            <h3>Mini Event Masters</h3>
+            <ul class="prize-benefits">
+              <li>Exclusive Tech Goodies</li>
+              <li>Silver Certificates</li>
+              <li>Social Media Shoutouts</li>
+              <li>Unstop Gold Coupons</li>
+            </ul>
+          </div>
+          <div class="tier-glow"></div>
+        </div>
+  
+        <!-- All Finalists -->
+        <div class="prize-tier bronze-prize">
+          <div class="prize-content">
+            <div class="tier-icon">⭐🔥</div>
+            <h3>Finalist League</h3>
+            <ul class="prize-benefits">
+              <li>Limited Edition Goodies</li>
+              <li>Elite Finalist Certificates</li>
+              <li>Unstop Silver Coupons</li>
+            </ul>
+          </div>
+          <div class="tier-glow"></div>
+        </div>
+  
+        <!-- All Participants -->
+        <div class="prize-tier participant-prize">
+          <div class="prize-content">
+            <div class="tier-icon">🎖️💫</div>
+            <h3>Code Warriors</h3>
+            <ul class="prize-benefits">
+              <li>Participation Certificates</li>
+              <li>50% Unstop Coupons</li>
+              <li>Exclusive IB Discounts</li>
+            </ul>
+          </div>
+          <div class="tier-glow"></div>
+        </div>
+      </div>
+    </div>
   </section>
-
   <!-- FAQ Section -->
-  <section id="faq" class="fullscreen-section">
-    <h2 class="section-title">FAQ</h2>
-    <p class="subtitle">Your questions answered soon!</p>
+  <!-- Add to index.html -->
+<section id="faq" class="fullscreen-section">
+    <div class="cyber-container">
+      <h2 class="section-title glitch-text" data-text="FAQ_VAULT">FAQ VAULT</h2>
+      
+      <div class="faq-grid">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="question-text">Who can contribute?</span>
+            <span class="faq-icon">➕</span>
+          </button>
+          <div class="faq-answer">
+            <p>Devcation is open to anyone with an interest in technology, innovation, and problem-solving. Participants can include students, developers, designers, entrepreneurs, and professionals from various backgrounds.</p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="question-text">Where can we reach out in case of queries?</span>
+            <span class="faq-icon">➕</span>
+          </button>
+          <div class="faq-answer">
+            <p>You can reach out to us on our Discord Server with any queries. Kindly use the doubt channel for the same!</p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="question-text">Do I need to have coding experience to participate?</span>
+            <span class="faq-icon">➕</span>
+          </button>
+          <div class="faq-answer">
+            <p>While coding experience is beneficial, it's not always necessary to participate in a hackathon. Many hackathons welcome participants with diverse skill sets, including design, business development, marketing, and project management. If you're a beginner you can also look at our mini events.</p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="question-text">What happens after the hackathon ends?</span>
+            <span class="faq-icon">➕</span>
+          </button>
+          <div class="faq-answer">
+            <p>After the hackathon concludes, top 10 teams will be invited to present their projects to judges and fellow participants during the final pitching round at IGDTUW. Winners will be announced, and prizes awarded based on the judging criteria. Date for this is 15th April, 2025.</p>
+          </div>
+        </div>
+  
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span class="question-text">How can I stay updated on hackathon announcements and events?</span>
+            <span class="faq-icon">➕</span>
+          </button>
+          <div class="faq-answer">
+            <p>Stay informed about Devcation'25 by joining our Discord Server. Know more about upcoming hackathons and events by GDG IGDTUW by joining our GDG Chapter.</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="faq-cta">
+        <p>Still have questions? Join our <span class="cyber-text">Discord Server</span></p>
+        <button class="hologram-button discord-cta">
+          <i class="fab fa-discord"></i>
+          Join Now
+        </button>
+      </div>
+    </div>
   </section>
 
+  <!-- Add to index.html after FAQ section -->
+<section id="more" class="fullscreen-section">
+    <div class="cyber-container">
+      <h2 class="section-title glitch-text" data-text="MORE">MORE</h2>
+      
+      <div class="more-grid">
+        <!-- Judges Card -->
+        <div class="more-card judges-card">
+          <div class="card-hologram"></div>
+          <div class="card-content">
+            <div class="card-icon">👨⚖️👩⚖️</div>
+            <h3>Judges Panel</h3>
+            <p>Meet our esteemed judges from top tech companies and institutions</p>
+            <div class="coming-soon">Click Here</div>
+          </div>
+        </div>
+  
+        <!-- Mentors Card -->
+        <div class="more-card mentors-card">
+          <div class="card-hologram"></div>
+          <div class="card-content">
+            <div class="card-icon">👩🏫👨💻</div>
+            <h3>Mentors</h3>
+            <p>Learn from industry experts and technical guides</p>
+            <div class="coming-soon">Click Here</div>
+          </div>
+        </div>
+  
+        <!-- Sponsors Card -->
+        <div class="more-card sponsors-card">
+          <div class="card-hologram"></div>
+          <div class="card-content">
+            <div class="card-icon">🏢💸</div>
+            <h3>Sponsors</h3>
+            <p>Discover our valued partners and sponsors</p>
+            <div class="coming-soon">Click Here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 GDG IGDTUW. All rights reserved.</p>
+  <!-- Update Footer in index.html -->
+<footer class="cyber-footer">
+    <div class="footer-grid">
+      <div class="footer-section contact-info">
+        <h4 class="footer-heading">Contact Nexus</h4>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:dscigdtuw@gmail.com" class="footer-link">dscigdtuw@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="footer-text">IGDTUW, Delhi</span>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-icon discord">
+            <i class="fab fa-discord"></i>
+          </a>
+          <a href="#" class="social-icon twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon linkedin">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+  
+      <div class="footer-section quick-connect">
+        <h4 class="footer-heading">Instant Transmission</h4>
+        <p class="footer-text">Join our network for real-time updates</p>
+        <button class="hologram-button">
+          <i class="fas fa-satellite-dish"></i>
+          Connect Now
+        </button>
+      </div>
+    </div>
+  
+    <div class="copyright">
+      <p>&copy; 2025 GDG IGDTUW. All rights reserved.</p>
+      <p>Designed with <i class="fas fa-heart cyber-heart"></i> by Dev Team</p>
+    </div>
   </footer>
 
   <!-- Scripts -->

@@ -1,0 +1,95 @@
+// _timeline.scss
+.vertical-timeline {
+    position: relative;
+    width: 100%;
+    margin: 5rem auto;
+    padding: 2rem 0;
+    
+    &::before {
+      // Main vertical line - changed to black
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: #000000; // Changed to black
+      transform: translateX(-50%);
+    }
+  }
+  
+  .timeline-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6rem;
+    width: 100%;
+  }
+  
+  .timeline-date {
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-right: 30px;
+    text-align: right;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .timeline-node {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px; // Smaller size for just the circle
+    height: 24px;
+    background: #000000; // Changed to black
+    border-radius: 50%;
+    z-index: 2;
+    // Removed the icon styling since we're not using icons anymore
+  }
+  
+  .timeline-content {
+    width: 45%;
+    margin-left: 50%;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    h3 {
+      color: #07113e;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+  
+  // Add media queries for responsive design
+  @media (max-width: 768px) {
+    .vertical-timeline::before {
+      left: 40px;
+    }
+    
+    .timeline-date {
+      left: 0;
+      width: 100%;
+      padding-left: 90px;
+      text-align: left;
+    }
+    
+    .timeline-node {
+      left: 40px;
+    }
+    
+    .timeline-content {
+      width: calc(100% - 90px);
+      margin-left: 90px;
+    }
+  }

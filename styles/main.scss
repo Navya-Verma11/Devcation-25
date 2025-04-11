@@ -4,7 +4,11 @@
 @import 'components/tracks';
 @import 'components/timeline';
 @import 'components/hero';
-
+@import 'components/prizes';
+@import 'components/faq';
+@import 'components/more';
+@import 'components/footer';
+@import 'components/about';
 
 
 // ===== BASE STYLES =====
@@ -99,7 +103,24 @@ body {
       }
     }
   }
-
+  .nav-logo {
+    height: 50px; // Match your navbar height
+    display: flex;
+    align-items: center;
+    
+    img {
+      height: 100%;
+      width: auto;
+      max-width: 200px; // Adjust based on your logo
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 0 5px $cyber-blue);
+    }
+  
+    &:hover img {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 10px $neon-pink);
+    }
+  }
   .hologram-button {
     background: linear-gradient(45deg, $cyber-blue, $hologram-purple);
     border: none;
