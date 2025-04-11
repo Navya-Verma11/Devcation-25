@@ -1,13 +1,7 @@
 # Devcation 2025 - GDG IGDTUW
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![npm](https://img.shields.io/npm/v/vite.svg)](https://www.npmjs.com/package/vite)
-![GitHub repo size](https://img.shields.io/github/repo-size/yourusername/devcation-2025)
-
 **Next-Gen Tech Festival Landing Page**  
 A cyberpunk-styled interactive website for GDG IGDTUW's flagship event Devcation 2025
-
-![Devcation Preview](https://via.placeholder.com/800x400.png?text=Devcation+2025+Preview)
 
 ## 🚀 Features
 
