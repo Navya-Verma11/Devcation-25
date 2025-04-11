@@ -1,0 +1,102 @@
+@import '../variables/variables';
+
+
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.track-card {
+  position: relative;
+  padding: 2rem;
+  border: 2px solid $cyber-blue;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.7);
+
+  .track-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at var(--x) var(--y),
+      rgba(0, 243, 255, 0.15) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba($cyber-blue, 0.3);
+
+    .track-gradient {
+      opacity: 1;
+    }
+  }
+}
+
+.track-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px $cyber-blue);
+}
+
+.track-card h3 {
+  color: $cyber-blue;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.glitched-text {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &::before {
+    color: $neon-pink;
+    animation: glitch-1 2s infinite linear;
+  }
+
+  &::after {
+    color: $cyber-blue;
+    animation: glitch-2 2s infinite linear;
+  }
+}
+
+// Optional: Keyframes for glitch effect
+@keyframes glitch-1 {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}

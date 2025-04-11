@@ -1,0 +1,307 @@
+// _hero.scss
+
+// Font Awesome fix
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+.fullscreen-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  opacity: 0;
+  animation: section-fade-in 0.5s ease forwards;
+  animation-delay: 0.3s;
+
+  @keyframes section-fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+
+  canvas.webgl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .matrix-rain-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+// Title styles
+.cyber-glitch {
+  font-size: 4rem;
+  color: $cyber-blue;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: title-glitch-in 1s ease forwards;
+  animation-delay: 0.5s;
+
+  @keyframes title-glitch-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Subtitle
+.cyber-subtitle {
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 5px $cyber-blue;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: subtitle-fade-in 0.5s ease forwards;
+  animation-delay: 0.8s;
+
+  @keyframes subtitle-fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.hologram-underline {
+  width: 60%;
+  height: 4px;
+  margin: 0.5rem auto;
+  background: linear-gradient(90deg, transparent, $cyber-blue, transparent);
+  border-radius: 10px;
+  transform: scaleX(0);
+  animation: underline-expand 0.8s ease forwards;
+  animation-delay: 1s;
+
+  @keyframes underline-expand {
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// =====================
+// Stats Section
+// =====================
+.cyber-stats-horizontal {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0;
+  margin: 2rem 0;
+  padding: 1.5rem 3rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  position: relative;
+  border: 1px solid $cyber-blue;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  animation: stats-fade-in 0.5s ease forwards;
+  animation-delay: 1.2s;
+
+  @keyframes stats-fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba($cyber-blue, 0.1) 50%, transparent 100%);
+    animation: gradient-pulse 4s infinite;
+    z-index: -1;
+  }
+}
+
+.stat-item {
+  text-align: center;
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent 0%, $cyber-blue 50%, transparent 100%);
+  margin: 0 20px;
+}
+
+.stat-value {
+  font-size: 3.5rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #00ff00;
+  font-weight: bold;
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+  letter-spacing: 1px;
+  line-height: 1;
+
+  &[data-count="4.6"]::after,
+  &[data-count="500"]::after,
+  &[data-count="25"]::after {
+    content: '';
+  }
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $cyber-blue;
+  margin-top: 0.5rem;
+}
+
+// =====================
+// Social Icons
+// =====================
+.social-grid-enhanced {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 4rem;
+  opacity: 0;
+  visibility: hidden;
+  animation: social-fade-in 0.5s ease forwards;
+  animation-delay: 1.5s;
+
+  @keyframes social-fade-in {
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .social-icon {
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: icon-pop-in 0.6s ease forwards;
+
+    @keyframes icon-pop-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation-delay: 1.6s + ($i * 0.1s);
+      }
+    }
+
+    i {
+      font-size: 2rem;
+      color: $cyber-blue;
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba($cyber-blue, 0.2);
+      transform: translateY(-5px);
+
+      i {
+        color: $neon-pink;
+        filter: drop-shadow(0 0 10px $neon-pink);
+        animation: social-bounce 0.6s ease;
+      }
+    }
+  }
+}
+
+// =====================
+// Animations
+// =====================
+@keyframes gradient-pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes social-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+// =====================
+// Responsive
+// =====================
+@media (max-width: 768px) {
+  .cyber-stats-horizontal {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem 1rem;
+
+    .stat-divider {
+      width: 50%;
+      height: 2px;
+      margin: 10px 0;
+      background: linear-gradient(to right, transparent 0%, $cyber-blue 50%, transparent 100%);
+    }
+  }
+
+  .social-grid-enhanced {
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+
+    .social-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+
+      i {
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+  .cyber-glitch {
+    font-size: 2.5rem;
+  }
+
+  .cyber-subtitle {
+    font-size: 1.2rem;
+  }
+}

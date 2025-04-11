@@ -1,0 +1,53 @@
+<script type="module">
+    import * as THREE from '../../vendor/three.js/build/three.module.js';
+    import { GLTFLoader } from '../../vendor/three.js/examples/jsm/loaders/GLTFLoader.js';
+  
+    const container = document.getElementById('hologram-logo');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+  
+    // Add holographic effect
+    const hologramMaterial = new THREE.MeshPhongMaterial({
+      color: 0x00ffff,
+      emissive: 0x00ffff,
+      transparent: true,
+      opacity: 0.8,
+      shininess: 100,
+    });
+  
+    const loader = new GLTFLoader();
+    loader.load('assets/images/logo-3d.glb', (gltf) => {
+      const logo = gltf.scene;
+      logo.traverse((child) => {
+        if (child.isMesh) {
+          child.material = hologramMaterial;
+        }
+      });
+      scene.add(logo);
+    });
+  
+    // Add ambient light
+    scene.add(new THREE.AmbientLight(0x404040));
+    
+    // Add directional light
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(0, 0, 5);
+    scene.add(light);
+  
+    camera.position.z = 5;
+  
+    // Add floating animation
+    function animate() {
+      requestAnimationFrame(animate);
+      if (scene.children.length > 2) {
+        scene.children[2].rotation.y += 0.01;
+        scene.children[2].position.y = Math.sin(Date.now() * 0.002) * 0.5;
+      }
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>

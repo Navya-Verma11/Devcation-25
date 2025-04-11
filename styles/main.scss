@@ -1,0 +1,173 @@
+// main.scss
+@import 'variables/variables';
+@import 'components/cyber-effects';
+@import 'components/tracks';
+@import 'components/timeline';
+@import 'components/hero';
+
+// Font Awesome fix
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+// ===== BASE STYLES =====
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at center, #000 0%, #001 100%);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  overflow-x: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &.fonts-loaded {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+// ===== NAVIGATION =====
+.cyberpunk-nav {
+  position: fixed;
+  top: 2rem;
+  width: 90%;
+  left: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid $cyber-blue;
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba($cyber-blue, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: nav-fade-in 0.8s ease forwards;
+  animation-delay: 0.2s;
+
+  @keyframes nav-fade-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 3rem;
+
+    .holographic-link {
+      position: relative;
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, $cyber-blue, $neon-pink);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      &:hover::before {
+        transform: scaleX(1);
+      }
+
+      &:hover {
+        text-shadow: 0 0 10px $cyber-blue,
+                     0 0 20px $cyber-blue,
+                     0 0 30px $cyber-blue;
+      }
+    }
+  }
+
+  .hologram-button {
+    background: linear-gradient(45deg, $cyber-blue, $hologram-purple);
+    border: none;
+    padding: 1rem 2rem;
+    color: black;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: rotate(45deg);
+      transition: all 0.5s ease;
+    }
+
+    &:hover::after {
+      animation: hologram-flow 1.5s infinite;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba($cyber-blue, 0.5);
+    }
+  }
+}
+
+@keyframes hologram-flow {
+  0% { transform: rotate(45deg) translateX(-100%); }
+  100% { transform: rotate(45deg) translateX(100%); }
+}
+
+// ===== SECTIONS =====
+.fullscreen-section {
+  position: relative;
+  z-index: 1;
+  padding: 8rem 2rem 6rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+// ===== FOOTER =====
+footer {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid $cyber-blue;
+  font-size: 0.9rem;
+  opacity: 0;
+  animation: footer-fade-in 0.5s ease forwards;
+  animation-delay: 2s;
+
+  @keyframes footer-fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+}
