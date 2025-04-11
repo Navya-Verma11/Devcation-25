@@ -1,3 +1,7 @@
+import { gsap } from 'gsap';
+import VanillaTilt from 'vanilla-tilt';
+
+
 export function initCyberEffects() {
     // Animate stats counters
     document.querySelectorAll('.stat-value').forEach((element) => {

@@ -1,13 +1,11 @@
 // main.scss
-@import 'variables/variables';
+@import './variables/variables';
 @import 'components/cyber-effects';
 @import 'components/tracks';
 @import 'components/timeline';
 @import 'components/hero';
 
-// Font Awesome fix
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/brands';
+
 
 // ===== BASE STYLES =====
 * {

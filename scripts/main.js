@@ -5,16 +5,35 @@ import { initCyberEffects } from './modules/cyber-effects.js';
 import VanillaTilt from 'vanilla-tilt';
 import { gsap } from 'gsap';
 
+// Initialize Tilt.js globally
+VanillaTilt.init(document.querySelectorAll('.track-card'), {
+  max: 15,
+  speed: 300,
+  glare: true,
+  'max-glare': 0.2,
+  gyroscope: true
+});
+
+// Font loading detection
+const initializeAfterFonts = () => {
+  Promise.all([
+    document.fonts.load('1rem "Orbitron"'),
+    document.fonts.load('1rem "Font Awesome 6 Brands"')
+  ]).then(() => {
+    document.body.classList.add('fonts-loaded');
+  });
+};
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize effects
+  // Initialize core systems
   createParticleSystem();
-  initCyberEffects();
+  initializeAfterFonts();
 
-  // GSAP default easing
+  // Set GSAP defaults
   gsap.defaults({ ease: "power3.out" });
 
-  // Particle interaction with mouse movement
+  // Particle system interaction
   document.addEventListener('mousemove', (e) => {
     gsap.to('.webgl', {
       duration: 0.5,
@@ -24,76 +43,64 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Navigation link hover effects
+  // Navigation effects
   document.querySelectorAll('.holographic-link').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      gsap.to(link, {
-        duration: 0.3,
-        color: '#00f3ff',
-        textShadow: '0 0 10px #00f3ff'
-      });
-    });
-
-    link.addEventListener('mouseleave', () => {
-      gsap.to(link, {
-        duration: 0.3,
-        color: 'white',
-        textShadow: 'none'
-      });
-    });
+    link.addEventListener('mouseenter', () => gsap.to(link, {
+      duration: 0.3,
+      color: '#00f3ff',
+      textShadow: '0 0 10px #00f3ff'
+    }));
+    
+    link.addEventListener('mouseleave', () => gsap.to(link, {
+      duration: 0.3,
+      color: 'white',
+      textShadow: 'none'
+    }));
   });
 
-  // Register button glow effect
+  // Register button effects
   const registerBtn = document.querySelector('.hologram-button');
   if (registerBtn) {
     registerBtn.addEventListener('mousemove', (e) => {
       const rect = registerBtn.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-
       gsap.to(registerBtn, {
         duration: 0.5,
-        '--x': x,
-        '--y': y,
+        '--x': (e.clientX - rect.left) / rect.width,
+        '--y': (e.clientY - rect.top) / rect.height,
         ease: "power2.out"
       });
     });
   }
-});
-// Add this to existing main.js
 
-// Social Icon Animations
-gsap.from(".social-icon", {
+  // Social icons animation
+  gsap.from(".social-icon", {
     duration: 1,
     y: 100,
     opacity: 0,
     stagger: 0.2,
     ease: "power4.out",
-    delay: 1
-  });
-  
-  document.querySelectorAll(".social-icon").forEach(icon => {
-    icon.addEventListener("mouseenter", () => {
-      gsap.to(icon, {
-        duration: 0.3,
-        scale: 1.2,
-        y: -10,
-        filter: "drop-shadow(0 0 20px rgba(0, 243, 255, 0.7))",
+    delay: 1,
+    onComplete: () => {
+      document.querySelectorAll(".social-icon").forEach(icon => {
+        icon.addEventListener("mouseenter", () => gsap.to(icon, {
+          duration: 0.3,
+          scale: 1.2,
+          y: -10,
+          filter: "drop-shadow(0 0 20px rgba(0, 243, 255, 0.7))"
+        }));
+        
+        icon.addEventListener("mouseleave", () => gsap.to(icon, {
+          duration: 0.3,
+          scale: 1,
+          y: 0,
+          filter: "drop-shadow(0 0 10px rgba(0, 243, 255, 0.5))"
+        }));
       });
-    });
-  
-    icon.addEventListener("mouseleave", () => {
-      gsap.to(icon, {
-        duration: 0.3,
-        scale: 1,
-        y: 0,
-        filter: "drop-shadow(0 0 10px rgba(0, 243, 255, 0.5))",
-      });
-    });
+    }
   });
-  
-  // Initialize Number Counters (add to existing initCyberEffects)
-  document.querySelectorAll(".stat-value").forEach((element) => {
+
+  // Number counters
+  document.querySelectorAll(".stat-value").forEach(element => {
     const target = parseFloat(element.dataset.count);
     gsap.to(element, {
       innerText: target,
@@ -106,34 +113,25 @@ gsap.from(".social-icon", {
       }
     });
   });
-// Track Card Interactions
-document.querySelectorAll('.track-card').forEach(card => {
+
+  // Track card interactions
+  document.querySelectorAll('.track-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
       gsap.to(card, {
-        '--x': `${x}px`,
-        '--y': `${y}px`,
+        '--x': `${e.clientX - rect.left}px`,
+        '--y': `${e.clientY - rect.top}px`,
         duration: 0.3
       });
     });
-  
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, {
-        '--x': `-100px`,
-        '--y': `-100px`,
-        duration: 0.5
-      });
-    });
+
+    card.addEventListener('mouseleave', () => gsap.to(card, {
+      '--x': `-100px`,
+      '--y': `-100px`,
+      duration: 0.5
+    }));
   });
-  
-  // Initialize Tilt.js for track cards
-  VanillaTilt.init(document.querySelectorAll('.track-card'), {
-    max: 15,
-    speed: 300,
-    glare: true,
-    'max-glare': 0.2,
-    gyroscope: true
-  });
+
+  // Initialize cyber effects last
+  initCyberEffects();
+});
