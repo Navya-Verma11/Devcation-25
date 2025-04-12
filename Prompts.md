@@ -1,4 +1,4 @@
-# DEVCATION25 Components Documentation
+# DEVCATION25 Prompts Documentation
 
 I used the following prompts with Gemini AI to develop components for redesigning the Devation 2025 site:
 
